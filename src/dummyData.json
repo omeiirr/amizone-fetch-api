@@ -1,4 +1,36 @@
 {
+  "faculty": [
+    {
+      "facultyPhoto": "https://avatars.dicebear.com/api/personas/your-cusom-seed.svg",
+      "name": "Prof A",
+      "subject": "Cloud Computing",
+      "subjectShort": "[CSE424]"
+    },
+    {
+      "facultyPhoto": "https://avatars.dicebear.com/api/personas/Pr.svg",
+      "name": "Prof B",
+      "subject": "Operating Systems",
+      "subjectShort": "[CSE425]"
+    },
+    {
+      "facultyPhoto": "https://avatars.dicebear.com/api/personas/ab233435.svg",
+      "name": "Prof C",
+      "subject": "Algorithms",
+      "subjectShort": "[CSE426]"
+    },
+    {
+      "facultyPhoto": "https://avatars.dicebear.com/api/personas/sdqdsggcxaqf.svg",
+      "name": "Prof D",
+      "subject": "Computer Networks",
+      "subjectShort": "[CSE427]"
+    },
+    {
+      "facultyPhoto": "https://avatars.dicebear.com/api/personas/sdfvxqpwsf.svg",
+      "name": "Prof E",
+      "subject": "Object-Oriented Programming",
+      "subjectShort": "[CSE428]"
+    }
+  ],
   "grades": [
     {
       "backPapers": "0",

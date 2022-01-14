@@ -61,6 +61,16 @@ app.post('/credentials', async (req, res) => {
 });
 
 app.post('/faculty', async (req, res) => {
+  if (
+    req.body.username === process.env.DEMO_USERNAME &&
+    req.body.password === process.env.DEMO_PASSWORD
+  ) {
+    setTimeout(() => {
+      res.json(dummyData['faculty']);
+    }, DEMO_TIMEOUT_DURATION);
+    return;
+  }
+
   const userData = await fetchFacultyData({
     username: req.body.username,
     password: req.body.password,
