@@ -33,6 +33,16 @@ app.get('/', function (req, res) {
 });
 
 app.post('/courses', async (req, res) => {
+  if (
+    req.body.username === process.env.DEMO_USERNAME &&
+    req.body.password === process.env.DEMO_PASSWORD
+  ) {
+    setTimeout(() => {
+      res.json(dummyData['courses']);
+    }, DEMO_TIMEOUT_DURATION);
+    return;
+  }
+
   const userData = await fetchCoursesData({
     username: req.body.username,
     password: req.body.password,
