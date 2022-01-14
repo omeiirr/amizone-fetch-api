@@ -25,19 +25,22 @@ const extractCoursesData = (html) => {
       courses[i].type = ele.innerHTML.replace(/\s+/g, ' ').trim();
     });
   coursesDOM.window.document
-    .querySelectorAll("#no-more-tables > table [data-title='Attendance'] > button > i")
+    .querySelectorAll("#no-more-tables > table [data-title='Attendance']")
     .forEach((ele, i) => {
-      courses[i].attendance = ele.innerHTML;
+      if (ele.innerHTML === 'NA') courses[i].attendance = 'NA';
+      else courses[i].attendance = ele.querySelector('button > i').innerHTML;
     });
   courses = courses.map((course) => {
-    const str = course.attendance.trim();
-    strArr = str.split(' ');
-    strArr2 = strArr[0].split('/');
-    course.attendance = {};
-    course.attendance.attended = parseInt(strArr2[0]);
-    course.attendance.total = parseInt(strArr2[1]);
-    course.attendance.unattended = course.attendance.total - course.attendance.attended;
-    course.attendance.percent = parseFloat(strArr[1].substring(1, strArr[1].length - 1));
+    if (course && course.attendance && course.attendance !== 'NA') {
+      const str = course.attendance.trim();
+      strArr = str.split(' ');
+      strArr2 = strArr[0].split('/');
+      course.attendance = {};
+      course.attendance.attended = parseInt(strArr2[0]);
+      course.attendance.total = parseInt(strArr2[1]);
+      course.attendance.unattended = course.attendance.total - course.attendance.attended;
+      course.attendance.percent = parseFloat(strArr[1].substring(1, strArr[1].length - 1));
+    }
     return course;
   });
 
