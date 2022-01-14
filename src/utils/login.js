@@ -18,6 +18,7 @@ const loginToAmizone = async (credentials) => {
     // args: ['--no-sandbox', '--disable-setuid-sandbox'],
   });
   const page = await browser.newPage();
+  await page.setViewport({ width: 1600, height: 1000 });
   page.setDefaultTimeout(60000);
 
   try {
