@@ -12,17 +12,17 @@ const extractCoursesData = (html) => {
     .querySelectorAll("#no-more-tables > table [data-title='Course Code']")
     .forEach((ele, i) => {
       courses.push({});
-      courses[i].code = ele.innerHTML;
+      courses[i].code = ele.innerHTML.replace(/\s+/g, ' ').trim();
     });
   coursesDOM.window.document
     .querySelectorAll("#no-more-tables > table [data-title='Course Name']")
     .forEach((ele, i) => {
-      courses[i].name = ele.innerHTML;
+      courses[i].name = ele.innerHTML.replace(/\s+/g, ' ').trim();
     });
   coursesDOM.window.document
     .querySelectorAll("#no-more-tables > table [data-title='Type']")
     .forEach((ele, i) => {
-      courses[i].type = ele.innerHTML;
+      courses[i].type = ele.innerHTML.replace(/\s+/g, ' ').trim();
     });
   coursesDOM.window.document
     .querySelectorAll("#no-more-tables > table [data-title='Attendance'] > button > i")
