@@ -7,11 +7,18 @@ const fetchTodayScheduleData = require('./modules/todaySchedule');
 const fetchWeekScheduleData = require('./modules/weekSchedule');
 const fetchCredentialsData = require('./modules/credentials');
 
+const dummyData = require('./dummyData.json');
+
+const dotenv = require('dotenv');
+dotenv.config({ path: './.env' });
+
 const path = require('path');
 const express = require('express');
 
 const app = express();
 const port = process.env.PORT || 3000;
+
+const DEMO_TIMEOUT_DURATION = 500; // ms
 
 /* Express Middleware */
 app.use(express.json());
@@ -68,6 +75,16 @@ app.post('/faculty', async (req, res) => {
 });
 
 app.post('/grades', async (req, res) => {
+  if (
+    req.body.username === process.env.DEMO_USERNAME &&
+    req.body.password === process.env.DEMO_PASSWORD
+  ) {
+    setTimeout(() => {
+      res.json(dummyData['grades']);
+    }, DEMO_TIMEOUT_DURATION);
+    return;
+  }
+
   const userData = await fetchGradesData({
     username: req.body.username,
     password: req.body.password,
