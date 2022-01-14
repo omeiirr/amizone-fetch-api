@@ -31,15 +31,15 @@ const fetchGradesData = async (credentials) => {
   }
 
   try {
-    await page.waitForSelector("[id='21']");
+    await page.waitForSelector('#M21');
 
     /* Navigate to page */
-    await page.evaluate(() => document.querySelector("[id='21']").click());
+    await page.evaluate(() => document.querySelector('#M21').click());
 
     /* Wait for page API response what provides page HTML */
     const response = await page.waitForResponse(
       (response) =>
-        response.url().startsWith('https://student.amizone.net/Examination/Examination') &&
+        response.url().startsWith('https://s.amizone.net/Examination/Examination') &&
         response.status() === 200,
     );
     const responseHTML = await response.text();
