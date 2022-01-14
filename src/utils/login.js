@@ -24,7 +24,7 @@ const loginToAmizone = async (credentials) => {
   try {
     /* Go to Login page and Login with provided username and password */
     // await page.goto("https://student.amizone.net/", { waitUntil: "domcontentloaded" });
-    await page.goto('https://student.amizone.net/');
+    await page.goto('https://s.amizone.net/');
 
     await page.waitForSelector('#loginform > div.container-login100-form-btn > button');
 
