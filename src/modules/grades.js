@@ -1,5 +1,5 @@
-const loginToAmizone = require("../utils/login");
-const jsdom = require("jsdom");
+const loginToAmizone = require('../utils/login');
+const jsdom = require('jsdom');
 const { JSDOM } = jsdom;
 
 const extractGradesData = (html) => {
@@ -13,7 +13,7 @@ const extractGradesData = (html) => {
 
   /* Extract data */
   let data = [];
-  for(let i = 0; i < semesterElements.length; i++) {
+  for (let i = 0; i < semesterElements.length; i++) {
     data.push({});
     data[i].semester = semesterElements[i].innerHTML.trim().replace('&nbsp;', '');
     data[i].sgpa = SGPAElements[i].innerHTML.trim().replace('&nbsp;', '');
@@ -26,7 +26,7 @@ const extractGradesData = (html) => {
 
 const fetchGradesData = async (credentials) => {
   const { page, browser, blockResourcesPlugin, error } = await loginToAmizone(credentials);
-  if(error) {
+  if (error) {
     return { error };
   }
 
@@ -37,7 +37,11 @@ const fetchGradesData = async (credentials) => {
     await page.evaluate(() => document.querySelector("[id='21']").click());
 
     /* Wait for page API response what provides page HTML */
-    const response = await page.waitForResponse((response) => response.url().startsWith("https://student.amizone.net/Examination/Examination") && response.status() === 200);
+    const response = await page.waitForResponse(
+      (response) =>
+        response.url().startsWith('https://student.amizone.net/Examination/Examination') &&
+        response.status() === 200,
+    );
     const responseHTML = await response.text();
 
     /* Get Data */

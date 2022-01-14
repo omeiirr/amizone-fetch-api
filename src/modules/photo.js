@@ -1,8 +1,8 @@
-const loginToAmizone = require("../utils/login");
+const loginToAmizone = require('../utils/login');
 
 const fetchPhotoData = async (credentials) => {
   const { page, browser, blockResourcesPlugin, error } = await loginToAmizone(credentials);
-  if(error) {
+  if (error) {
     return { error };
   }
 
@@ -10,7 +10,9 @@ const fetchPhotoData = async (credentials) => {
     await page.waitForNavigation({ waitUntil: 'domcontentloaded' });
 
     /* Get Data */
-    const photoUrl = await page.evaluate(() => document.body.innerHTML.match(/(?<=imageUrl = ').*?(?=';)/)[0]);
+    const photoUrl = await page.evaluate(
+      () => document.body.innerHTML.match(/(?<=imageUrl = ').*?(?=';)/)[0],
+    );
     const userData = { photoUrl };
 
     /* Close puppeteer */

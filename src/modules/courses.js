@@ -1,5 +1,5 @@
-const loginToAmizone = require("../utils/login");
-const jsdom = require("jsdom");
+const loginToAmizone = require('../utils/login');
+const jsdom = require('jsdom');
 const { JSDOM } = jsdom;
 
 const extractCoursesData = (html) => {
@@ -25,23 +25,19 @@ const extractCoursesData = (html) => {
       courses[i].type = ele.innerHTML;
     });
   coursesDOM.window.document
-    .querySelectorAll(
-      "#no-more-tables > table [data-title='Attendance'] > button > i"
-    )
+    .querySelectorAll("#no-more-tables > table [data-title='Attendance'] > button > i")
     .forEach((ele, i) => {
       courses[i].attendance = ele.innerHTML;
     });
   courses = courses.map((course) => {
     const str = course.attendance.trim();
-    strArr = str.split(" ");
-    strArr2 = strArr[0].split("/");
+    strArr = str.split(' ');
+    strArr2 = strArr[0].split('/');
     course.attendance = {};
     course.attendance.attended = parseInt(strArr2[0]);
     course.attendance.total = parseInt(strArr2[1]);
     course.attendance.unattended = course.attendance.total - course.attendance.attended;
-    course.attendance.percent = parseFloat(
-      strArr[1].substring(1, strArr[1].length - 1)
-    );
+    course.attendance.percent = parseFloat(strArr[1].substring(1, strArr[1].length - 1));
     return course;
   });
 
@@ -50,7 +46,7 @@ const extractCoursesData = (html) => {
 
 const fetchCoursesData = async (credentials) => {
   const { page, browser, blockResourcesPlugin, error } = await loginToAmizone(credentials);
-  if(error) {
+  if (error) {
     return { error };
   }
 
@@ -61,7 +57,11 @@ const fetchCoursesData = async (credentials) => {
     await page.evaluate(() => document.querySelector("[id='18']").click());
 
     /* Wait for page API response what provides page HTML */
-    const response = await page.waitForResponse((response) => response.url().startsWith("https://student.amizone.net/Academics/MyCourses") && response.status() === 200);
+    const response = await page.waitForResponse(
+      (response) =>
+        response.url().startsWith('https://student.amizone.net/Academics/MyCourses') &&
+        response.status() === 200,
+    );
     const responseHTML = await response.text();
 
     /* Get Data */

@@ -1,27 +1,27 @@
-const fetchCoursesData = require("./modules/courses");
-const fetchGradesData = require("./modules/grades");
-const fetchFacultyData = require("./modules/faculty");
-const fetchPhotoData = require("./modules/photo");
-const fetchReginfoData = require("./modules/reginfo");
-const fetchTodayScheduleData = require("./modules/todaySchedule");
-const fetchWeekScheduleData = require("./modules/weekSchedule");
-const fetchCredentialsData = require("./modules/credentials");
+const fetchCoursesData = require('./modules/courses');
+const fetchGradesData = require('./modules/grades');
+const fetchFacultyData = require('./modules/faculty');
+const fetchPhotoData = require('./modules/photo');
+const fetchReginfoData = require('./modules/reginfo');
+const fetchTodayScheduleData = require('./modules/todaySchedule');
+const fetchWeekScheduleData = require('./modules/weekSchedule');
+const fetchCredentialsData = require('./modules/credentials');
 
-const path = require("path");
-const express = require("express");
+const path = require('path');
+const express = require('express');
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 /* Express Middleware */
 app.use(express.json());
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "*");
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', '*');
   next();
 });
 
-app.get('/', function(req, res) {
+app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname + '/views/index.html'));
 });
 
@@ -30,9 +30,9 @@ app.post('/courses', async (req, res) => {
     username: req.body.username,
     password: req.body.password,
   });
-  if(userData.error) {
+  if (userData.error) {
     res.status(408).json({
-      error: userData.error
+      error: userData.error,
     });
   } else {
     res.json(userData);
@@ -44,9 +44,9 @@ app.post('/credentials', async (req, res) => {
     username: req.body.username,
     password: req.body.password,
   });
-  if(userData.error) {
+  if (userData.error) {
     res.status(408).json({
-      error: userData.error
+      error: userData.error,
     });
   } else {
     res.json(userData);
@@ -58,9 +58,9 @@ app.post('/faculty', async (req, res) => {
     username: req.body.username,
     password: req.body.password,
   });
-  if(userData.error) {
+  if (userData.error) {
     res.status(408).json({
-      error: userData.error
+      error: userData.error,
     });
   } else {
     res.json(userData);
@@ -72,9 +72,9 @@ app.post('/grades', async (req, res) => {
     username: req.body.username,
     password: req.body.password,
   });
-  if(userData.error) {
+  if (userData.error) {
     res.status(408).json({
-      error: userData.error
+      error: userData.error,
     });
   } else {
     res.json(userData);
@@ -86,9 +86,9 @@ app.post('/photo', async (req, res) => {
     username: req.body.username,
     password: req.body.password,
   });
-  if(userData.error) {
+  if (userData.error) {
     res.status(408).json({
-      error: userData.error
+      error: userData.error,
     });
   } else {
     res.json(userData);
@@ -100,9 +100,9 @@ app.post('/reginfo', async (req, res) => {
     username: req.body.username,
     password: req.body.password,
   });
-  if(userData.error) {
+  if (userData.error) {
     res.status(408).json({
-      error: userData.error
+      error: userData.error,
     });
   } else {
     res.json(userData);
@@ -114,9 +114,9 @@ app.post('/schedule/today', async (req, res) => {
     username: req.body.username,
     password: req.body.password,
   });
-  if(userData.error) {
+  if (userData.error) {
     res.status(408).json({
-      error: userData.error
+      error: userData.error,
     });
   } else {
     res.json(userData);
@@ -128,13 +128,13 @@ app.post('/schedule/week', async (req, res) => {
     username: req.body.username,
     password: req.body.password,
   });
-  if(userData.error) {
+  if (userData.error) {
     res.status(408).json({
-      error: userData.error
+      error: userData.error,
     });
   } else {
     res.json(userData);
   }
 });
 
-app.listen(port, () => console.log(`Running on port ${port}`))
+app.listen(port, () => console.log(`Running on port ${port}`));

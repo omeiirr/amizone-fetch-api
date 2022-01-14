@@ -1,8 +1,8 @@
-const loginToAmizone = require("../utils/login");
+const loginToAmizone = require('../utils/login');
 
 const fetchTodayScheduleData = async (credentials) => {
   const { page, browser, blockResourcesPlugin, error } = await loginToAmizone(credentials);
-  if(error) {
+  if (error) {
     return { error };
   }
 
@@ -16,7 +16,11 @@ const fetchTodayScheduleData = async (credentials) => {
 
     /* Get Data */
     /* Wait for page API response what provides the data */
-    const response = await page.waitForResponse((response) => response.url().startsWith("https://student.amizone.net/Calendar/home/GetDiaryEvents") && response.status() === 200);
+    const response = await page.waitForResponse(
+      (response) =>
+        response.url().startsWith('https://student.amizone.net/Calendar/home/GetDiaryEvents') &&
+        response.status() === 200,
+    );
     const responseData = await response.json();
 
     const date = responseData[0].start.trim().split(' ')[0];
@@ -32,7 +36,7 @@ const fetchTodayScheduleData = async (credentials) => {
           roomNumber: item.RoomNo,
           attendanceColor: item.AttndColor,
           allDay: item.allDay,
-        }
+        };
       });
 
     /* Close puppeteer */

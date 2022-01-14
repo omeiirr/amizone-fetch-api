@@ -1,5 +1,5 @@
-const loginToAmizone = require("../utils/login");
-const jsdom = require("jsdom");
+const loginToAmizone = require('../utils/login');
+const jsdom = require('jsdom');
 const { JSDOM } = jsdom;
 
 const extractWeekScheduleData = (html) => {
@@ -11,9 +11,9 @@ const extractWeekScheduleData = (html) => {
   /* Extract data */
   weekdays.forEach((weekday) => {
     const weekdayHtmlList = DOM.window.document.querySelector(`#${weekday} > .row`).children;
-    if(weekdayHtmlList && weekdayHtmlList.length) {
+    if (weekdayHtmlList && weekdayHtmlList.length) {
       data[weekday] = [];
-      for(let i = 0; i < weekdayHtmlList.length; i++) {
+      for (let i = 0; i < weekdayHtmlList.length; i++) {
         data[weekday][i] = {};
         const dataItems = weekdayHtmlList[i].firstElementChild.children;
         const timeArr = dataItems[0].innerHTML.split('to');
@@ -31,7 +31,7 @@ const extractWeekScheduleData = (html) => {
 
 const fetchWeekScheduleData = async (credentials) => {
   const { page, browser, blockResourcesPlugin, error } = await loginToAmizone(credentials);
-  if(error) {
+  if (error) {
     return { error };
   }
 
@@ -42,7 +42,11 @@ const fetchWeekScheduleData = async (credentials) => {
     await page.evaluate(() => document.querySelector("[id='10']").click());
 
     /* Wait for page API response what provides page HTML */
-    const response = await page.waitForResponse((response) => response.url().startsWith("https://student.amizone.net/TimeTable/Home") && response.status() === 200);
+    const response = await page.waitForResponse(
+      (response) =>
+        response.url().startsWith('https://student.amizone.net/TimeTable/Home') &&
+        response.status() === 200,
+    );
     const responseHTML = await response.text();
 
     /* Get Data */

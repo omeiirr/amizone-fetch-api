@@ -1,12 +1,12 @@
-const loginToAmizone = require("../utils/login");
-const jsdom = require("jsdom");
+const loginToAmizone = require('../utils/login');
+const jsdom = require('jsdom');
 const { JSDOM } = jsdom;
 
 const extractReginfoData = (html) => {
   /* Create page DOM instance with JSDOM */
   const DOM = new JSDOM(html);
 
-  const table = DOM.window.document.querySelector("#divPrint > table > tbody").children;
+  const table = DOM.window.document.querySelector('#divPrint > table > tbody').children;
 
   /* Extract data */
   let data = {};
@@ -52,7 +52,13 @@ const fetchReginfoData = async (credentials) => {
     await page.evaluate(() => document.querySelector("[id='1']").click());
 
     /* Wait for page API response what provides page HTML */
-    const response = await page.waitForResponse((response) => response.url().startsWith("https://student.amizone.net/SemRegistration/ReRegistrationPrint") && response.status() === 200);
+    const response = await page.waitForResponse(
+      (response) =>
+        response
+          .url()
+          .startsWith('https://student.amizone.net/SemRegistration/ReRegistrationPrint') &&
+        response.status() === 200,
+    );
     const responseHTML = await response.text();
 
     /* Get Data */
