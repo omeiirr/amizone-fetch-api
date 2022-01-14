@@ -16,6 +16,12 @@ const fetchTodayScheduleData = async (credentials) => {
 
     /* Get Data */
     /* Wait for page API response what provides the data */
+
+    await page.waitForSelector('a[href="/Home/_Home"]');
+
+    /* Navigate to page */
+    await page.evaluate(() => document.querySelector('a[href="/Home/_Home"]').click());
+
     const response = await page.waitForResponse(
       (response) =>
         response.url().startsWith('https://s.amizone.net/Calendar/home/GetDiaryEvents') &&
