@@ -12,6 +12,7 @@
   "author": "Pawan Kolhe <contact@pawankolhe.com> (https://pawankolhe.com/)",
   "license": "MIT",
   "dependencies": {
+    "dotenv": "^11.0.0",
     "express": "^4.17.1",
     "jsdom": "^16.4.0",
     "puppeteer": "^5.2.1",
