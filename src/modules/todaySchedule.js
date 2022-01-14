@@ -29,7 +29,8 @@ const fetchTodayScheduleData = async (credentials) => {
     );
     const responseData = await response.json();
 
-    const date = responseData[0].start.trim().split(' ')[0];
+    date = responseData[0]?.start?.trim().split(' ')[0];
+
     const userData = responseData
       .filter((item) => item.start.trim().split(' ')[0] === date)
       .map((item) => {
