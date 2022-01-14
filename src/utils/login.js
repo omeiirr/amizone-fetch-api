@@ -14,8 +14,8 @@ blockResourcesPlugin.blockedTypes.add('script');
 const loginToAmizone = async (credentials) => {
   /* Start puppereer and create new page */
   const browser = await puppeteer.launch({
-    headless: true,
-    // args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    headless: false,
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
   });
   const page = await browser.newPage();
   await page.setViewport({ width: 1600, height: 1000 });
