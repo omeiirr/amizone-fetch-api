@@ -36,15 +36,15 @@ const fetchWeekScheduleData = async (credentials) => {
   }
 
   try {
-    await page.waitForSelector("[id='10']");
+    await page.waitForSelector('#M10');
 
     /* Navigate to page */
-    await page.evaluate(() => document.querySelector("[id='10']").click());
+    await page.evaluate(() => document.querySelector('#M10').click());
 
     /* Wait for page API response what provides page HTML */
     const response = await page.waitForResponse(
       (response) =>
-        response.url().startsWith('https://student.amizone.net/TimeTable/Home') &&
+        response.url().startsWith('https://s.amizone.net/TimeTable/Home') &&
         response.status() === 200,
     );
     const responseHTML = await response.text();
