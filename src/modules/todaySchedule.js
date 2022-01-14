@@ -18,7 +18,7 @@ const fetchTodayScheduleData = async (credentials) => {
     /* Wait for page API response what provides the data */
     const response = await page.waitForResponse(
       (response) =>
-        response.url().startsWith('https://student.amizone.net/Calendar/home/GetDiaryEvents') &&
+        response.url().startsWith('https://s.amizone.net/Calendar/home/GetDiaryEvents') &&
         response.status() === 200,
     );
     const responseData = await response.json();
