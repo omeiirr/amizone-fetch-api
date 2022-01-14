@@ -113,5 +113,8 @@
       "semester": "4",
       "sgpa": "8.67"
     }
-  ]
+  ],
+  "photo": {
+    "photoUrl": "https://avatars.dicebear.com/api/micah/xddsdfswc.svg"
+  }
 }

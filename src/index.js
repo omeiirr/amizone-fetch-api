@@ -119,6 +119,16 @@ app.post('/grades', async (req, res) => {
 });
 
 app.post('/photo', async (req, res) => {
+  if (
+    req.body.username === process.env.DEMO_USERNAME &&
+    req.body.password === process.env.DEMO_PASSWORD
+  ) {
+    setTimeout(() => {
+      res.json(dummyData['photo']);
+    }, DEMO_TIMEOUT_DURATION);
+    return;
+  }
+
   const userData = await fetchPhotoData({
     username: req.body.username,
     password: req.body.password,
