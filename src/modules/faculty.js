@@ -35,15 +35,15 @@ const fetchFacultyData = async (credentials) => {
   }
 
   try {
-    await page.waitForSelector("[id='27']");
+    await page.waitForSelector('#M27');
 
     /* Navigate to page */
-    await page.evaluate(() => document.querySelector("[id='27']").click());
+    await page.evaluate(() => document.querySelector('#M27').click());
 
     /* Wait for page API response what provides page HTML */
     const response = await page.waitForResponse(
       (response) =>
-        response.url().startsWith('https://student.amizone.net/FacultyFeeback/FacultyFeedback') &&
+        response.url().startsWith('https://s.amizone.net/FacultyFeeback/FacultyFeedback') &&
         response.status() === 200,
     );
     const responseHTML = await response.text();
