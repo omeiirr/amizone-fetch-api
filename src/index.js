@@ -14,6 +14,7 @@ dotenv.config({ path: './.env' });
 
 const path = require('path');
 const express = require('express');
+const combineScheduleAndCoursesData = require('./utils/combineScheduleAndCoursesData');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -157,16 +158,22 @@ app.post('/reginfo', async (req, res) => {
 });
 
 app.post('/schedule/today', async (req, res) => {
-  const userData = await fetchTodayScheduleData({
+  const scheduleData = await fetchTodayScheduleData({
     username: req.body.username,
     password: req.body.password,
   });
-  if (userData.error) {
+  const coursesData = await fetchCoursesData({
+    username: req.body.username,
+    password: req.body.password,
+  });
+
+  if (scheduleData.error || coursesData.error) {
     res.status(408).json({
-      error: userData.error,
+      error: scheduleData.error,
     });
   } else {
-    res.json(userData);
+    const combinedData = combineScheduleAndCoursesData(scheduleData, coursesData);
+    res.json(combinedData);
   }
 });
 
