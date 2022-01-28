@@ -47,11 +47,11 @@ const extractCoursesData = (html) => {
   return courses;
 };
 
-const fetchCoursesData = async (credentials) => {
-  const { page, browser, blockResourcesPlugin, error } = await loginToAmizone(credentials);
-  if (error) {
-    return { error };
-  }
+const fetchCoursesData = async (page, browser, blockResourcesPlugin, error) => {
+  // const { page, browser, blockResourcesPlugin, error } = await loginToAmizone(credentials);
+  // if (error) {
+  //   return { error };
+  // }
 
   try {
     await page.waitForSelector('#M18');

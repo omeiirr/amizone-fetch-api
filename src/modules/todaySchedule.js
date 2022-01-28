@@ -1,10 +1,11 @@
-const loginToAmizone = require('../utils/login');
+const combineScheduleAndCoursesData = require('../utils/combineScheduleAndCoursesData');
+const fetchCoursesData = require('./courses');
 
-const fetchTodayScheduleData = async (credentials) => {
-  const { page, browser, blockResourcesPlugin, error } = await loginToAmizone(credentials);
-  if (error) {
-    return { error };
-  }
+const fetchTodayScheduleData = async (page, browser, blockResourcesPlugin, error) => {
+  // const { page, browser, blockResourcesPlugin, error } = await loginToAmizone(credentials);
+  // if (error) {
+  //   return { error };
+  // }
 
   blockResourcesPlugin.blockedTypes.delete('script');
 
@@ -31,7 +32,7 @@ const fetchTodayScheduleData = async (credentials) => {
 
     date = responseData[0]?.start?.trim().split(' ')[0];
 
-    const userData = responseData
+    const scheduleData = await responseData
       .filter((item) => item.start.trim().split(' ')[0] === date)
       .map((item) => {
         return {
@@ -45,10 +46,13 @@ const fetchTodayScheduleData = async (credentials) => {
           allDay: item.allDay,
         };
       });
+    const coursesData = await fetchCoursesData(page, browser, blockResourcesPlugin, error);
 
     /* Close puppeteer */
     await browser.close();
-    return userData;
+    return combineScheduleAndCoursesData(scheduleData, coursesData);
+
+    // return userData;
   } catch (e) {
     console.log(e);
     return { error: 'Request Timeout.' };
