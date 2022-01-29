@@ -16,6 +16,7 @@ const path = require('path');
 const express = require('express');
 const combineScheduleAndCoursesData = require('./utils/combineScheduleAndCoursesData');
 const loginToAmizone = require('./utils/login');
+const fetchDetailsData = require('./modules/details');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -63,6 +64,30 @@ app.post('/courses', async (req, res) => {
 
 app.post('/credentials', async (req, res) => {
   const userData = await fetchCredentialsData({
+    username: req.body.username,
+    password: req.body.password,
+  });
+  if (userData.error) {
+    res.status(408).json({
+      error: userData.error,
+    });
+  } else {
+    res.json(userData);
+  }
+});
+
+app.post('/details', async (req, res) => {
+  if (
+    req.body.username === process.env.DEMO_USERNAME &&
+    req.body.password === process.env.DEMO_PASSWORD
+  ) {
+    setTimeout(() => {
+      res.json(dummyData['details']);
+    }, DEMO_TIMEOUT_DURATION);
+    return;
+  }
+
+  const userData = await fetchDetailsData({
     username: req.body.username,
     password: req.body.password,
   });

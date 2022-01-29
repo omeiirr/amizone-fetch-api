@@ -56,6 +56,14 @@
       }
     }
   ],
+  "details": {
+    "institution": "Amity School of Engineering and Technology",
+    "programme": "B.Tech (Computer Science and Engineering)",
+    "name": "Ms Claire Pritchett",
+    "fathersName": "Mr Jay Pritchett",
+    "enrollmentNo": "A1111111111",
+    "batch": "2019-2023"
+  },
   "faculty": [
     {
       "facultyPhoto": "https://avatars.dicebear.com/api/personas/your-cusom-seed.svg",
