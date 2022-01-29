@@ -187,6 +187,16 @@ app.post('/reginfo', async (req, res) => {
 });
 
 app.post('/schedule/today', async (req, res) => {
+  if (
+    req.body.username === process.env.DEMO_USERNAME &&
+    req.body.password === process.env.DEMO_PASSWORD
+  ) {
+    setTimeout(() => {
+      res.json(dummyData['scheduleToday']);
+    }, DEMO_TIMEOUT_DURATION);
+    return;
+  }
+
   const credentials = {
     username: req.body.username,
     password: req.body.password,
