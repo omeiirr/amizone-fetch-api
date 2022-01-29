@@ -192,8 +192,8 @@
     },
     {
       "attendance": {
-        "attended": 24,
-        "total": 22,
+        "attended": 22,
+        "total": 24,
         "unattended": 2,
         "percent": 91
       },
