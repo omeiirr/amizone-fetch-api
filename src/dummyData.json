@@ -16,10 +16,10 @@
       "name": "Operating Systems",
       "type": "Compulsory",
       "attendance": {
-        "attended": 23,
+        "attended": 22,
         "total": 23,
-        "unattended": 0,
-        "percent": 100
+        "unattended": 1,
+        "percent": 95
       }
     },
     {
@@ -49,10 +49,10 @@
       "name": "Object-Oriented Programming",
       "type": "Compulsory",
       "attendance": {
-        "attended": 25,
-        "total": 25,
-        "unattended": 0,
-        "percent": 100
+        "attended": 22,
+        "total": 24,
+        "unattended": 2,
+        "percent": 91
       }
     }
   ],
@@ -144,10 +144,10 @@
     },
     {
       "attendance": {
-        "attended": 23,
+        "attended": 22,
         "total": 23,
-        "unattended": 0,
-        "percent": 100
+        "unattended": 1,
+        "percent": 95
       },
       "courseTitle": "Operating Systems",
       "courseCode": "CSE425",
@@ -193,9 +193,9 @@
     {
       "attendance": {
         "attended": 24,
-        "total": 24,
-        "unattended": 0,
-        "percent": 100
+        "total": 22,
+        "unattended": 2,
+        "percent": 91
       },
       "courseTitle": "Object-Oriented Programming",
       "courseCode": "CSE428",
